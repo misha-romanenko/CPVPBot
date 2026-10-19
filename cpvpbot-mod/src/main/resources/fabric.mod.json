@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "cpvpbot",
+  "version": "${version}",
+  "name": "CPVP Bot Control",
+  "description": "Baritone-based Crystal PvP bot control mod: localhost TCP control channel, CPVP actions (place obsidian/anchors/glowstone, crystals, gapples, totems) and action logging.",
+  "authors": [
+    "cpvpbot"
+  ],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "net.cpvpbot.CpvpBotMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "fabric-api": "*",
+    "baritone": "*"
+  }
+}

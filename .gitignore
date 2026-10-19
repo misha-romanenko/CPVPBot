@@ -1,0 +1,26 @@
+# --- secrets ---
+.env
+
+# --- large tooling / binaries (not source) ---
+toolchain/
+baritone-jars/
+cpvpbot-mod/libs/*.jar
+cpvpbot-mod/libs/baritone-api-fabric-1.19.0.jar
+dummy/node_modules/
+
+# keep the tiny identity-mapping stubs needed to build (a few hundred bytes)
+!cpvpbot-mod/libs/identity-mappings.jar
+
+# --- build artifacts ---
+cpvpbot-mod/build/
+cpvpbot-mod/.gradle/
+__pycache__/
+*.pyc
+
+# --- runtime logs ---
+logs/
+*.log
+
+# --- editor / OS ---
+.DS_Store
+*.swp

@@ -1,0 +1,52 @@
+plugins {
+    id 'fabric-loom' version '1.19.1'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+}
+
+dependencies {
+    // Minecraft 26.2 is unobfuscated: mappings are identity (see fabric-example-mod)
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings files('libs/identity-mappings.jar')
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    // Baritone API for compile only - the standalone Baritone jar is installed in the game instance
+    implementation files('libs/baritone-api-fabric-1.19.0.jar')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = 'UTF-8'
+    it.options.release = 25
+}
+
+jar {
+    from('LICENSE') {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+}
